@@ -11,17 +11,32 @@ const Mutations = {
       info
     );
 
-    console.log(item);
+    return item;
+  },
+
+  async updateItem(parent, args, ctx, info) {
+    // get the item
+    // make changes to the item
+    // make db update
+    // return item
+
+    // first take copy of the updates
+    const updates = { ...args };
+
+    // delete id from updates
+    delete updates.id;
+
+    // run update method
+    const item = await ctx.db.mutation.updateItem(
+      {
+        data: updates,
+        where: { id: args.id },
+      },
+      info
+    );
 
     return item;
   },
-  // createDog(parent, args, ctx, info) {
-  //   global.dogs = global.dogs || [];
-  //   // create a dog
-  //   const newDog = { name: args.name };
-  //   global.dogs.push(newDog);
-  //   return newDog;
-  // },
 };
 
 module.exports = Mutations;
