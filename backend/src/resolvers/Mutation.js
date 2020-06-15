@@ -1,4 +1,17 @@
 const Mutations = {
+  async deleteItem(parent, args, ctx, info) {
+    // Need to make sure it exists + authorization check
+    const item = await ctx.db.mutation.deleteItem(
+      {
+        where: {
+          id: args.id,
+        },
+      },
+      info
+    );
+
+    return item;
+  },
   async createItem(parent, args, ctx, info) {
     // TODO: Check if they are logged in
 

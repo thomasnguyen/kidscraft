@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
+
 import styled from "styled-components";
 
 import Title from "./styles/Title";
 import ItemStyles from "./styles/ItemStyles";
 import PriceTag from "./styles/PriceTag";
 import formatMoney from "../lib/formatMoney";
+import DeleteItem from "./DeleteItem";
+
+import { ALL_ITEMS_QUERY } from "./Items";
+
 class Item extends Component {
   static propTypes = {
     item: PropTypes.object.isRequired,
@@ -34,7 +39,7 @@ class Item extends Component {
             <a>✏️ Edit</a>
           </Link>
           <button>Add to Cart</button>
-          <button>Delete</button>
+          <DeleteItem id={item.id}>Delete</DeleteItem>
         </div>
       </ItemStyles>
     );
